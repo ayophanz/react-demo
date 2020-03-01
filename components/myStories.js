@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
         padding:10,
         marginTop:15,
         marginBottom:15,
-        marginVertical:1,
         backgroundColor:'#ffffff',
         color:'white',
         borderColor:'#4fc08d',
-        borderWidth:1
+        borderWidth:1,
+        //flex:1
     },
     titleStory: {
         fontSize:26,

@@ -112,17 +112,16 @@ export default function App() {
             onPress={() => setIsPeopleMode(true)}
             style={styles.peopleBtn}/>
         </View>
-        <View>
-          <FlatList 
-            keyExtractor={(item, index) => item.key}
-            data={dailyGoals} 
-            renderItem={itemData => 
-            <MyStories 
-              //onDelete={removeGoalHandler} 
-              id={itemData.item.key} 
-              title={itemData.item.title}
-              desc={itemData.item.desc} /> }/>
-        </View>
+        <FlatList
+          style={{maxHeight:'88%'}}
+          keyExtractor={(item, index) => item.key}
+          data={dailyGoals} 
+          renderItem={itemData => 
+          <MyStories 
+            //onDelete={removeGoalHandler} 
+            id={itemData.item.key} 
+            title={itemData.item.title}
+            desc={itemData.item.desc} /> }/>
       </View>
     </View>
   );
@@ -130,7 +129,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   view1: {
-    padding:10
+    padding:10,
+    marginVertical:1
   },
   appTitle: {
       textAlign:'center',
