@@ -7,7 +7,11 @@ import {
   Button,
   FlatList, 
   YellowBox,
-  Alert} from 'react-native';
+  Alert
+} from 'react-native';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import MyStories from './components/myStories'; 
 import PostStory from './components/postStory';
 import LoginSignup from './components/loginSignup';

@@ -1,9 +1,10 @@
 
 import React, {useState} from 'react';
-import {View, TextInput, Button, Modal, StyleSheet, Alert} from 'react-native';
+import {View, TextInput, Button, Modal, StyleSheet, Alert, YellowBox} from 'react-native';
 import db from './connection';
 
 const additionalUserInfo = props => {
+    YellowBox.ignoreWarnings(['Setting a timer']);
     const [enteredName, setEnteredName] = useState('');
 
     function inputNameHandler(enteredName) {
