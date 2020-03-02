@@ -9,8 +9,7 @@ import {
   YellowBox,
   Alert
 } from 'react-native';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 
 import MyStories from './components/myStories'; 
 import PostStory from './components/postStory';
@@ -98,26 +97,29 @@ export default function App() {
       </View>
       <View style={styles.view1}>
         <View style={styles.mainTopBtn}>
-          <Button 
-            title="Logout" 
-            color='red'
-            style={styles.logoutBtn}
-            onPress={logout}/>
-          <View style={styles.addDiv}>
+            <AntDesign 
+              onPress={logout}
+              style={styles.logoutBtn}
+              name="logout" size={32} color="#fd5e53" />
+            <View style={styles.addDiv}>
             <Button 
               title="Add story" 
               color='#4fc08d'
               onPress={() => setIsAddMode(true)}
               style={styles.addBtn}/>
           </View> 
-          <Button 
+          <FontAwesome
+           onPress={() => setIsPeopleMode(true)}
+           style={styles.peopleBtn}
+           name="users" size={32} color="#9764c7"/>
+          {/* <Button 
             title="People" 
             color='#2b84ad'
             onPress={() => setIsPeopleMode(true)}
-            style={styles.peopleBtn}/>
+            style={styles.peopleBtn}/> */}
         </View>
         <FlatList
-          style={{maxHeight:'88%'}}
+          style={{maxHeight:'86%', marginTop:5}}
           keyExtractor={(item, index) => item.key}
           data={dailyGoals} 
           renderItem={itemData => 
@@ -132,6 +134,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  main: {
+   backgroundColor:'#f1e4e4'
+  },  
   view1: {
     padding:10,
     marginVertical:1
@@ -153,7 +158,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   addDiv: {
-    width:'60%',
+    width:'75%',
     marginLeft:10,
     marginRight:10
   },
