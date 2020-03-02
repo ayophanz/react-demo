@@ -56,9 +56,9 @@ const postStory = props => {
                         borderColor='#4fc08d'
                         title="Publish" 
                         style={styles.addGoalBtn}/>
-                </View>      
+                </View>
             </View>
-            <View><Button title="close" color="red" onPress={props.onClose}/></View>
+            <View><Button title="close" color="#fd5e53" onPress={props.onClose}/></View>
         </Modal>
     );
 }
@@ -70,10 +70,13 @@ const styles = StyleSheet.create({
         justifyContent:'center', 
         alignItems:'center'
     },
+    scrollView1: {
+        width:'100%'
+    },
     inputGoalTxt: {
         width:'80%',
         borderColor:'transparent',
-        borderBottomColor:'black', 
+        borderBottomColor:'#099a97', 
         borderWidth:1,
         paddingBottom:0,
         padding:10,

@@ -37,7 +37,6 @@ export default function App() {
   const [peopleFollow, setPeopleFollow] = useState([]);
   const [isPeopleMode, setIsPeopleMode] = useState(false);
   const [isAddMode, setIsAddMode] = useState(false);
-
   function addStoryHandler(story, storyDesc) {
    // setStories(currentGoals => [...currentGoals, {key:new Date().valueOf().toString(), title:story, desc:storyDesc}]);
     setIsAddMode(false);
@@ -109,14 +108,9 @@ export default function App() {
               style={styles.addBtn}/>
           </View> 
           <FontAwesome
-           onPress={() => setIsPeopleMode(true)}
-           style={styles.peopleBtn}
-           name="users" size={32} color="#9764c7"/>
-          {/* <Button 
-            title="People" 
-            color='#2b84ad'
             onPress={() => setIsPeopleMode(true)}
-            style={styles.peopleBtn}/> */}
+            style={styles.peopleBtn}
+            name="users" size={32} color="#9764c7"/>
         </View>
         <FlatList
           style={{maxHeight:'86%', marginTop:5}}
@@ -124,7 +118,6 @@ export default function App() {
           data={dailyGoals} 
           renderItem={itemData => 
           <MyStories 
-            //onDelete={removeGoalHandler} 
             id={itemData.item.key} 
             title={itemData.item.title}
             desc={itemData.item.desc} /> }/>
@@ -135,7 +128,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   main: {
-   backgroundColor:'#f1e4e4'
   },  
   view1: {
     padding:10,

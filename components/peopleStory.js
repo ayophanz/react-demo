@@ -1,8 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import {View, FlatList, Text, Button, Modal, TouchableOpacity, StyleSheet} from 'react-native';
+import { SimpleLineIcons } from "@expo/vector-icons";
+import Single from './single';
 
-const Story = props => {
+const PeopleStory = props => {
+    const [isSingleMode, setIsSingleMode] = useState(false);
+
     function excerpt(value, limit) {
         return (value.length<limit)?value:value.substring(0, limit)+'...';
     }
@@ -16,14 +20,16 @@ const Story = props => {
                 keyExtractor={(item, index) => item.key}
                 data={props.story} 
                 renderItem={itemData => 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>setIsSingleMode(true)}>
                     <View style={styles.view2}>
+                    <Single id={props.id} title={itemData.item.title} desc={itemData.item.desc} onClose={()=>setIsSingleMode(false)} visible={isSingleMode}/>
+                        <SimpleLineIcons name="pin" size={22} color="#099a97" />
                         <Text style={styles.titleStory}>{excerpt(itemData.item.title, 30)}</Text>
                         <Text>{excerpt(itemData.item.desc, 150)}</Text>
                     </View>
                 </TouchableOpacity>}/>
             </View>
-            <View><Button title="close" color="red" onPress={props.onClose}/></View>
+            <View><Button title="close" color="#fd5e53" onPress={props.onClose}/></View>
         </Modal>
     );
 }
@@ -34,19 +40,23 @@ const styles = StyleSheet.create({
     },
     view2: {
         padding:10,
-        marginTop:15,
-        marginBottom:15,
+        marginTop:2,
+        marginBottom:2,
         marginLeft:10,
         marginRight:10,
         marginVertical:1,
         backgroundColor:'#ffffff',
         color:'white',
-        borderColor:'#4fc08d',
+        borderColor:'#099a97',
         borderWidth:1
     },
     titleStory: {
         fontSize:26,
-        fontWeight:'700'
+        fontWeight:'700',
+        borderBottomColor:'#099a97',
+        borderBottomWidth:1,
+        paddingBottom:10,
+        marginBottom:5
     },
     appTitle: {
         textAlign:'center',
@@ -61,4 +71,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Story;
+export default PeopleStory;

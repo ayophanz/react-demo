@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import {View, FlatList, Text, Button, Modal, TouchableOpacity, StyleSheet, Alert} from 'react-native';
-import Story from './story';
+import { FontAwesome } from "@expo/vector-icons";
+import PeopleStory from './peopleStory';
 import db from './connection';
 
 const people = props => {
@@ -33,7 +34,7 @@ const people = props => {
     return (
         <Modal visible={props.visible} animationType="slide">
             <View style={styles.view1}>
-                <Story 
+                <PeopleStory
                     onClose={()=>setIsStoryMode(false)} 
                     visible={isStoryMode}
                     displayName={displayName}
@@ -42,16 +43,16 @@ const people = props => {
                     keyExtractor={(item, index) => item.key}
                     data={props.people} 
                     renderItem={itemData => 
-                    <TouchableOpacity>
-                        <View style={styles.view2}>
+                    <TouchableOpacity onPress={()=>loadStory(itemData.item.key)}>
+                        <View style={styles.view2} >
+                            <FontAwesome name="user-o" size={32} color="#15cda8"/>
                             <Text 
                                 style={styles.titleStory}
-                                onPress={()=>loadStory(itemData.item.key)} 
                                 id={itemData.item.key}>{excerpt(itemData.item.name, 30)}</Text>
                         </View>
                     </TouchableOpacity>}/>
             </View>
-            <View><Button title="close" color="red" onPress={props.onClose}/></View>
+            <View><Button title="close" color="#fd5e53" onPress={props.onClose}/></View>
         </Modal>
     );
 }
@@ -62,21 +63,20 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     view2: {
-        padding:2,
-        paddingLeft:10,
-        paddingRight:10,
-        marginTop:1,
-        marginBottom:1,
+        padding:10,
+        marginTop:2,
+        marginBottom:2,
         marginLeft:10,
         marginRight:10,
-        backgroundColor:'#ffffff',
-        borderColor:'#4fc08d',
+        borderColor:'#099a97',
         borderWidth:1,
-        justifyContent:'center',
+        borderWidth:1,
+        flexDirection:'row'
     },
     titleStory: {
         fontSize:18,
-        fontWeight:'700'
+        fontWeight:'700',
+        marginLeft:10
     }
 });
 
