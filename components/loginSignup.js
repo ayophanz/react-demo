@@ -26,12 +26,8 @@ const loginSignup = props => {
 
     function signUpUser(email, password){
         try {
-            if(email.length <= 0 || isEmailValid(email)==false) {
-                return alert("Please enter valid email");
-            }
-            if (password.length < 6) {
-                return alert("Please enter atleast 6 characters of password");
-            }
+            if(email.length <= 0 || isEmailValid(email)==false)  return alert("Please enter valid email");
+            if (password.length < 6) return alert("Please enter atleast 6 characters of password");
             setIsAdditionalInfo(true);            
         }
         catch (error) {
@@ -45,15 +41,10 @@ const loginSignup = props => {
         setIsAdditionalInfo(false);
     }
     
-
     function loginUser(email, password) {
         try {
-            if(email.length <= 0 || isEmailValid(email)==false) {
-                return alert("Please enter valid email");
-            }
-            if (password.length < 6) {
-                return alert("Please enter atleast 6 characters of password");
-            }
+            if(email.length <= 0 || isEmailValid(email)==false) return alert("Please enter valid email");
+            if (password.length < 6) return alert("Please enter atleast 6 characters of password");
             db.auth().signInWithEmailAndPassword(email, password).then(function (user) {
                 setEmail('');
                 setPassword('');
@@ -62,7 +53,6 @@ const loginSignup = props => {
             }).catch(function(error) {
                 Alert.alert('Something went wrong!', error.message);
             });
-            
         }
         catch (error) {
             Alert.alert('Something went wrong!', error.toString());
