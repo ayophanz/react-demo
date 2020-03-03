@@ -32,15 +32,7 @@ const loginSignup = props => {
             if (password.length < 6) {
                 return alert("Please enter atleast 6 characters of password");
             }
-            setIsAdditionalInfo(true);
-            // db.auth().createUserWithEmailAndPassword(email, password).then(function(user){
-            //     //Alert.alert('Signup Successfully!', 'Congratz!');
-            //     setEmail('');
-            //     setPassword('');
-            // }).catch(function(error) {
-            //     Alert.alert('Something went wrong!', error.message);
-            // });
-            
+            setIsAdditionalInfo(true);            
         }
         catch (error) {
             Alert.alert('Something went wrong!', error.toString());

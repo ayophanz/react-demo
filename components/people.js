@@ -20,7 +20,7 @@ const people = props => {
         db.firestore().collection('story').where('user', '==', uid).onSnapshot(snapshot => {
           let changes = snapshot.docChanges();
           changes.forEach(change => {
-                setStoryFollow(currentStory => [...currentStory, {key:change.doc.data().key, title:change.doc.data().title, desc:change.doc.data().desc}]);
+                setStoryFollow(currentStory => [...currentStory, Array.prototype.reverse.call({key:change.doc.data().key, title:change.doc.data().title, desc:change.doc.data().desc})]);
           });
         });
         db.firestore().collection('name').where('key', '==', uid).onSnapshot(snapshot => {

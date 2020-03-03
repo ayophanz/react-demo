@@ -37,20 +37,6 @@ export default function App() {
   const [peopleFollow, setPeopleFollow] = useState([]);
   const [isPeopleMode, setIsPeopleMode] = useState(false);
   const [isAddMode, setIsAddMode] = useState(false);
-  function addStoryHandler(story, storyDesc) {
-   // setStories(currentGoals => [...currentGoals, {key:new Date().valueOf().toString(), title:story, desc:storyDesc}]);
-    setIsAddMode(false);
-  }
-
-  function removeGoalHandler(goalKey) {
-    setStories(currentStories => {
-      return currentStories.filter((goal) =>goal.key !== goalKey);
-    });
-  }
-
-  function hasAccess(value) {
-    setIsNotAuth(value);
-  }
 
   function loadStories() {
     setStories([]);
@@ -58,7 +44,7 @@ export default function App() {
     db.firestore().collection('story').where('user', '==', userId).onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
       changes.forEach(change => {
-        setStories(currentStories => [...currentStories, {key:change.doc.data().key, title:change.doc.data().title, desc:change.doc.data().desc}]);
+        setStories(currentStories => [...currentStories, Array.prototype.reverse.call({key:change.doc.data().key, title:change.doc.data().title, desc:change.doc.data().desc})]);
       });
     });
   }
@@ -69,7 +55,7 @@ export default function App() {
     db.firestore().collection('name').onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
       changes.forEach(change => {
-        if(change.doc.data().key.toString()!=userId) setPeopleFollow(currentFollow => [...currentFollow, {key:change.doc.data().key, name:change.doc.data().name}]);
+        if(change.doc.data().key.toString()!=userId) setPeopleFollow(currentFollow => [...currentFollow, Array.prototype.reverse.call({key:change.doc.data().key, name:change.doc.data().name})]);
       });
     });
   }
@@ -85,8 +71,8 @@ export default function App() {
 
   return (
     <View style={styles.main} >
-      <LoginSignup ifNotAuth={hasAccess} visible={isNotAuth}/>
-      <PostStory onClose={()=>setIsAddMode(false)} visible={isAddMode} onAddStory={addStoryHandler}/>
+      <LoginSignup ifNotAuth={()=>setIsNotAuth(value)} visible={isNotAuth}/>
+      <PostStory onClose={()=>setIsAddMode(false)} visible={isAddMode} onAddStory={()=>setIsAddMode(false)}/>
       <People 
         onClose={()=>setIsPeopleMode(false)} 
         visible={isPeopleMode}

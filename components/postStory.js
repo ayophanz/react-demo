@@ -30,7 +30,7 @@ const postStory = props => {
                 create_at: new Date()
             });
         });
-        props.onAddStory(enteredStory, enteredStoryDesc);
+        props.onAddStory();
         setEnteredStory('');
         setEnteredStoryDesc('');
     }
